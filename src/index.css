@@ -1,1 +1,15 @@
+@import url("/css/fonts.css");
 @import "tailwindcss";
+
+@theme{
+    --color-primary: #a85e2b;
+    --font-roboto-Bold: "Roboto-Bold", sans-serif;
+    --font-roboto-Light: "Roboto-Light", sans-serif;
+    --font-roboto-Medium: "Roboto-Medium", sans-serif;
+    --font-roboto-Regular: "Roboto-Regular", sans-serif;
+   
+}
+
+body{
+    font-family: "Roboto-Medium", sans-serif;
+}
