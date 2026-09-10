@@ -1,8 +1,11 @@
 
+import Topbar from "./Fragmenta/Topbar"
 
 const Header = () => {
   return (
-    <div>Header</div>
+    <div>
+<Topbar/>
+    </div>
   )
 }
 
