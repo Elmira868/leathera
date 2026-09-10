@@ -6,6 +6,8 @@ import ArtificialLatherPage from "../pages/ArtificialLatherPage.jsx";
 import BlogsPage from "../pages/BlogsPage.jsx";
 import SuedePage from "../pages/SuedePage.jsx";
 import LeathersPage from "../pages/LeathersPage.jsx";
+import LoginPage from "../pages/LoginPage.jsx";
+import RegisterPage from "../pages/RegisterPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,8 @@ const router = createBrowserRouter([
       { path: "/blogs", element: <BlogsPage /> },
       { path: "/suede", element: <SuedePage /> },
       { path: "/leather", element: <LeathersPage /> },
+      { path: "/login", element: <LoginPage /> },
+      { path: "/register", element: <RegisterPage /> },
     ],
   },
 ]);
