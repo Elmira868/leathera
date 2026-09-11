@@ -1,8 +1,10 @@
 import { Link } from "react-router";
+import { AuthLayout } from "../components/layouts/AuthLayout";
 
 const RegisterPage = () => {
   return (
-    <section className="flex min-h-[60vh] items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+   <AuthLayout currentPage="Register">
+     <section className="flex min-h-[60vh] items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md rounded-xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
         <div className="mb-8 text-center">
           <h1 className="font-roboto-Bold text-2xl text-gray-800 sm:text-3xl">Register</h1>
@@ -57,6 +59,7 @@ const RegisterPage = () => {
         </p>
       </div>
     </section>
+   </AuthLayout>
   );
 };
 

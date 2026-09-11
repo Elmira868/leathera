@@ -6,7 +6,7 @@ import ArtificialLatherPage from "../pages/ArtificialLatherPage.jsx";
 import BlogsPage from "../pages/BlogsPage.jsx";
 import SuedePage from "../pages/SuedePage.jsx";
 import LeathersPage from "../pages/LeathersPage.jsx";
-import LoginPage from "../pages/LoginPage.jsx";
+import LoginPage from "../pages/Login/LoginPage.jsx";
 import RegisterPage from "../pages/RegisterPage.jsx";
 
 const router = createBrowserRouter([
