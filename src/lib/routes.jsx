@@ -8,6 +8,9 @@ import SuedePage from "../pages/SuedePage.jsx";
 import LeathersPage from "../pages/LeathersPage.jsx";
 import LoginPage from "../pages/Login/LoginPage.jsx";
 import RegisterPage from "../pages/RegisterPage.jsx";
+import ForgotPasswordPage from "../pages/ForgotPasswordPage.jsx";
+import AboutPage from "../pages/AboutPage.jsx";
+import ContactPage from "../pages/ContactPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +25,9 @@ const router = createBrowserRouter([
       { path: "/leather", element: <LeathersPage /> },
       { path: "/login", element: <LoginPage /> },
       { path: "/register", element: <RegisterPage /> },
+      { path: "/forget-password", element: <ForgotPasswordPage /> },
+      { path: "/about-us", element: <AboutPage /> },
+      { path: "/contact-us", element: <ContactPage /> },
     ],
   },
 ]);

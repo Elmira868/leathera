@@ -1,7 +1,10 @@
 
 import Button from "../../../components/Common/Button";
+import { useNavigate } from "react-router";
 
 const NewCustomer = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex h-fit w-full flex-col border border-gray-300 p-5 sm:p-6 lg:p-8">
       <h2 className="mb-2 font-roboto-Medium text-base text-gray-800 sm:text-lg">
@@ -19,7 +22,9 @@ const NewCustomer = () => {
       </p>
 
       <div className="mt-auto">
-        <Button>Continue</Button>
+        <Button type="button" onClick={() => navigate("/register")}>
+          Continue
+        </Button>
       </div>
     </div>
   );

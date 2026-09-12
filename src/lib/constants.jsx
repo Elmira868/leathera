@@ -65,7 +65,7 @@ export const sidebarSections = [
 export const categories = [
   {
     name: "Fashion",
-    path: "/fashin",
+    path: "/fashion",
   },
   {
     name: "Artificial Leather",
@@ -73,7 +73,7 @@ export const categories = [
   },
   {
     name: "Faux Leather",
-    path: "/faux-leather",
+    path: "/leather",
   },
   {
     name: "Suede",

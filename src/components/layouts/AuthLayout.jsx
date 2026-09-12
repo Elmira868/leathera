@@ -1,4 +1,3 @@
-
 import AuthSidebar from "../Common/Sidebar/AuthSidebar";
 import Breadcrumb from "../Common/Breadcrumb";
 
@@ -14,11 +13,8 @@ export const AuthLayout = ({ children, currentPage }) => {
         </aside>
 
         {/* Content */}
-        <main className="min-w-0 flex-1">
-          {children}
-        </main>
+        <main className="min-w-0 flex-1">{children}</main>
       </div>
     </>
   );
 };
-

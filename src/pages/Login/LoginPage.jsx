@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-
+import { supabase, supabaseConfigError } from "../../lib/supabase";
 import { AuthLayout } from "../../components/layouts/AuthLayout";
 import NewCustomer from "./Fragments/NewCustomer";
 import Button from "../../components/Common/Button";
@@ -28,43 +28,40 @@ const LoginPage = () => {
     setError("");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    setError("");
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Validation
-    if (!formData.email || !formData.password) {
-      setError("Please fill in all fields.");
-      return;
-    }
+  setError("");
 
-    // Fake loading
-    setLoading(true);
+  if (!formData.email.trim() || !formData.password) {
+    setError("Please enter your email and password.");
+    return;
+  }
 
-    setTimeout(() => {
-      // Fake user
-      const fakeUser = {
-        email: "test@example.com",
-        password: "123456",
-      };
+  if (!supabase) {
+    setError(supabaseConfigError);
+    return;
+  }
 
-      // Fake authentication
-      if (
-        formData.email === fakeUser.email &&
-        formData.password === fakeUser.password
-      ) {
-        localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("userEmail", formData.email);
+  setLoading(true);
 
-        navigate("/account");
-      } else {
-        setError("Invalid email or password.");
-      }
+  const { error } = await supabase.auth.signInWithPassword({
+    email: formData.email.trim(),
+    password: formData.password,
+  });
 
-      setLoading(false);
-    }, 800);
-  };
+  setLoading(false);
+
+  if (error) {
+    setError(error.message);
+    return;
+  }
+
+  navigate("/");
+};
+
+
 
   return (
     <AuthLayout currentPage="Login">
