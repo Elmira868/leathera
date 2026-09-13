@@ -1,7 +1,9 @@
 
-import ShoppingCart from "./Fragmenta/ShoppingCart"
-import Topbar from "./Fragmenta/Topbar"
-import UserAccount from "./Fragmenta/UserAccount"
+import Menu from "./Fragment/Menu"
+import SearchBox from "./Fragment/SearchBox"
+import ShoppingCart from "./Fragment/ShoppingCart"
+import Topbar from "./Fragment/Topbar"
+import UserAccount from "./Fragment/UserAccount"
 
 const Header = () => {
   return (
@@ -14,11 +16,15 @@ const Header = () => {
         <img
           src="/assets/static/logo.png"
           alt="Leather home"
-          className="h-auto w-24 object-contain sm:w-36 lg:w-44"
+          className="h-auto md:block hid w-24 object-contain sm:w-36 lg:w-44"
         />
         <div className="min-w-0 justify-self-end">
           <ShoppingCart />
         </div>
+      </div>
+      <div className="flex justify-between">
+        <Menu/>
+      <SearchBox/>
       </div>
     </>
   )

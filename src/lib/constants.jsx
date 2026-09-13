@@ -22,7 +22,6 @@ export const socialLinks = [
   },
 ];
 
-
 export const account = [
   {
     name: "Login",
@@ -49,6 +48,62 @@ export const information = [
   },
 ];
 
+export const MenuItem = [
+  {
+    title: "Fashion",
+    key: "fashion",
+    items: [
+      {
+        title: "Clothing",
+        items: [
+          { title: "Ethnic Wear", path: "/ethnic-wear" },
+          { title: "Sports Wear", path: "/sports-wear" },
+          { title: "Lounge Wear", path: "/lounge-wear" },
+          { title: "Trousers", path: "/trousers" },
+        ],
+      },
+      {
+        title: "Accessories",
+        items: [
+          { title: "Luggage & Travel", path: "/luggage-travel" },
+          { title: "Wallets & Belts", path: "/wallets-belts" },
+          { title: "Handbags", path: "/handbags" },
+          { title: "Printed Coat", path: "/printed-coat" },
+        ],
+      },
+      {
+        title: "Footwear",
+        items: [
+          { title: "Formal Shoes", path: "/formal-shoes" },
+          { title: "Flip-Flops", path: "/flip-flops" },
+          { title: "Sandals", path: "/sandals" },
+          { title: "Sport Shoes", path: "/sport-shoes" },
+        ],
+      },
+    ],
+  },
+
+  {
+    title: "Artificial Leather",
+    path: "/artificial-leather",
+  },
+
+  {
+    title: "Faux Leather",
+    path: "/leather",
+  },
+
+  {
+    title: "Suede",
+    path: "/suede",
+  },
+
+  {
+    title: "Blogs",
+    path: "/blogs",
+  },
+];
+
 export const sidebarSections = [
   {
     title: "Account",
@@ -59,8 +114,6 @@ export const sidebarSections = [
     items: information,
   },
 ];
-
-
 
 export const categories = [
   {
@@ -84,8 +137,6 @@ export const categories = [
     path: "/blogs",
   },
 ];
-
-
 
 export const filters = [
   {
