@@ -1,9 +1,8 @@
-
-import Menu from "./Fragment/Menu"
-import SearchBox from "./Fragment/SearchBox"
-import ShoppingCart from "./Fragment/ShoppingCart"
-import Topbar from "./Fragment/Topbar"
-import UserAccount from "./Fragment/UserAccount"
+import Menu from "./Fragment/Menu";
+import SearchBox from "./Fragment/SearchBox";
+import ShoppingCart from "./Fragment/ShoppingCart";
+import Topbar from "./Fragment/Topbar";
+import UserAccount from "./Fragment/UserAccount";
 
 const Header = () => {
   return (
@@ -23,11 +22,11 @@ const Header = () => {
         </div>
       </div>
       <div className="flex justify-between">
-        <Menu/>
-      <SearchBox/>
+        <Menu />
+        <SearchBox />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
