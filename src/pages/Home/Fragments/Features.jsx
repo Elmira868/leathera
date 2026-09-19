@@ -1,45 +1,81 @@
+import { useEffect, useRef, useState } from "react";
 
-import { FaRegUserCircle } from "react-icons/fa";
-import { AiOutlineDollar } from "react-icons/ai";
-import { GrDeliver } from "react-icons/gr";
+import ProductsSlider from "../../../components/Common/Slider/ProductsSliderBox";
+import TabTitle from "../../../components/Common/TabsSlider/TabTitle";
 
-const features = [
-  {
-    icon: FaRegUserCircle,
-    text: "24x7 Free Support",
-  },
-  {
-    icon: AiOutlineDollar,
-    text: "Money Back Guarantee",
-  },
-  {
-    icon: GrDeliver,
-    text: "Free Worldwide Shipping",
-  },
-];
+import { supabase } from "../../../lib/supabase";
+
+const normalizeFeatures = (items = []) =>
+  items.map((feature) => ({
+    ...feature,
+    id: feature.id,
+    name: feature.title || feature.name || "Featured Item",
+    image_url: feature.image_url || feature.image || feature.img,
+    price: feature.price ?? feature.amount ?? "Price on request",
+  }));
 
 const Features = () => {
+  const productSliderRef = useRef(null);
+  const [features, setFeatures] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchFeatures = async () => {
+      setLoading(true);
+      setError(null);
+
+      if (!supabase) {
+        setFeatures([]);
+        setLoading(false);
+        return;
+      }
+
+      const { data, error } = await supabase.from("features").select("*").order("id");
+
+      if (error) {
+        setError(error.message);
+        setLoading(false);
+        return;
+      }
+
+      setFeatures(normalizeFeatures(data || []));
+      setLoading(false);
+    };
+
+    fetchFeatures();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!features.length) {
+    return null;
+  }
+
   return (
-    <div className=" md:grid hidden grid-cols-1 gap-6 bg-gray-100 sm:grid-cols-3">
-      {features.map((item) => {
-        const Icon = item.icon;
+    <div className="mt-8 sm:mt-10">
+      <div className="mx-8 flex items-center justify-between overflow-hidden border border-gray-300">
+        <div className="shrink-0">
+          <TabTitle>Features</TabTitle>
+        </div>
+      </div>
 
-        return (
-          <div
-            key={item.text}
-            className="flex items-center gap-4 border-b border-gray-400/40 p-4 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0"
-          >
-            <Icon className="text-3xl" />
-
-            <h2 className="text-sm font-roboto-Medium text-gray-900">
-              {item.text}
-            </h2>
-          </div>
-        );
-      })}
+      <div className="mt-4">
+        <ProductsSlider
+          swiperRef={productSliderRef}
+          items={features}
+          slidesPerView={3}
+          spaceBetween={24}
+        />
+      </div>
     </div>
   );
 };
 
 export default Features;
-

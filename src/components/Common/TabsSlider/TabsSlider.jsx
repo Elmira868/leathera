@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef } from "react";
 
 import TabTitle from "./TabTitle";
 import TabButton from "./TabButton";
@@ -10,19 +10,13 @@ const TabsSlider = ({ title, tabs, onChange, swiperRef, activeTab: controlledAct
 
   const isControlled = controlledActiveTab !== undefined;
   const activeTab = isControlled ? controlledActiveTab : internalActiveTab;
-
-  useEffect(() => {
-    if (!tabs.length) return;
-    if (!tabs.some((tab) => tab.id === activeTab)) {
-      const nextTab = tabs[0].id;
-      if (!isControlled) setInternalActiveTab(nextTab);
-      onChange?.(nextTab);
-    }
-  }, [tabs, activeTab, isControlled, onChange]);
+  const normalizedActiveTab = tabs.some((tab) => tab.id === activeTab)
+    ? activeTab
+    : tabs[0]?.id ?? "";
 
   const activeIndex = useMemo(
-    () => tabs.findIndex((tab) => tab.id === activeTab),
-    [tabs, activeTab]
+    () => tabs.findIndex((tab) => tab.id === normalizedActiveTab),
+    [tabs, normalizedActiveTab]
   );
 
   const handleTabChange = (id) => {
@@ -66,7 +60,7 @@ const TabsSlider = ({ title, tabs, onChange, swiperRef, activeTab: controlledAct
             type="button"
             onClick={() => handleTabChange(tab.id)}
             className={`shrink-0 text-xs sm:text-sm font-roboto-Medium transition-colors cursor-pointer ${
-              activeTab === tab.id ? "text-primary" : "text-gray-400"
+              normalizedActiveTab === tab.id ? "text-primary" : "text-gray-400"
             }`}
           >
             {tab.label}
