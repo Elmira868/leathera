@@ -12,6 +12,7 @@ import SectionBox from "../../components/Common/SectionBox/SectionBox.jsx";
 
 import Features from "./Fragments/Features.jsx";
 import HeroSlider from "./Fragments/HeroSlider.jsx";
+import Blogs from "./Fragments/Blogs.jsx";
 
 const HomePage = () => {
   return (
@@ -105,6 +106,7 @@ const HomePage = () => {
       </section>
 
       <Features/>
+      <Blogs/>
     </div>
   );
 };
