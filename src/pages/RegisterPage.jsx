@@ -3,6 +3,7 @@ import { Link } from "react-router";
 
 import { AuthLayout } from "../components/layouts/AuthLayout";
 import { supabase, supabaseConfigError } from "../lib/supabase";
+import Loading from "../components/Common/Loading";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -328,7 +329,7 @@ const RegisterPage = () => {
               disabled={loading}
               className="flex w-full items-center justify-center rounded-lg bg-primary px-4 py-3 font-roboto-Medium text-sm text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {loading ? "Creating account..." : "Create Account"}
+              {loading ? <Loading size="sm" label="Creating account..." className="text-white" /> : "Create Account"}
             </button>
           </form>
 

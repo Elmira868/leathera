@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import ProductsSlider from "../../../Common/Slider/ProductsSliderBox";
 import TabsSlider from "../../../Common/TabsSlider/TabsSlider";
+import Loading from "../../../Common/Loading";
 
 import { supabase } from "../../../../lib/supabase";
 
@@ -71,7 +72,7 @@ const NewProducts = () => {
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading className="min-h-48" />;
   }
 
   if (error) {

@@ -5,6 +5,7 @@ import { supabase, supabaseConfigError } from "../../lib/supabase";
 import { AuthLayout } from "../../components/layouts/AuthLayout";
 import NewCustomer from "./Fragments/NewCustomer";
 import Button from "../../components/Common/Button";
+import Loading from "../../components/Common/Loading";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -142,7 +143,7 @@ const handleSubmit = async (e) => {
                 disabled={loading}
                 className="w-full disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {loading ? "Logging in..." : "Login"}
+                {loading ? <Loading size="sm" label="Logging in..." className="text-white" /> : "Login"}
               </Button>
             </form>
 

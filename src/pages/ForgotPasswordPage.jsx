@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { AuthLayout } from "../components/layouts/AuthLayout";
 import Button from "../components/Common/Button";
 import { supabase, supabaseConfigError } from "../lib/supabase";
+import Loading from "../components/Common/Loading";
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState("");
@@ -70,7 +71,7 @@ const ForgotPasswordPage = () => {
               />
             </label>
             <Button type="submit" disabled={loading} className="w-full disabled:cursor-not-allowed disabled:opacity-60">
-              {loading ? "Sending..." : "Send Reset Link"}
+              {loading ? <Loading size="sm" label="Sending..." className="text-white" /> : "Send Reset Link"}
             </Button>
           </form>
 
