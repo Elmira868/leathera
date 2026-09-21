@@ -1,7 +1,9 @@
 
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router";
 
 import ProductsSlider from "../../../components/Common/Slider/ProductsSliderBox";
+import Loading from "../../../components/Common/Loading";
 
 import TabTitle from "../../../components/Common/TabsSlider/TabTitle";
 
@@ -42,7 +44,10 @@ const normalizeBlogs = (items = []) =>
 
 // Render a single blog card inside the slider
 const renderBlogItem = (blog) => (
-  <div className="group mt-5 mx-8 flex h-full cursor-pointer flex-col overflow-hidden bg-white">
+  <Link
+    to={`/blogs/${encodeURIComponent(blog.id)}`}
+    className="group mt-5 mx-8 flex h-full cursor-pointer flex-col overflow-hidden bg-white"
+  >
     <div className="flex h-52 w-full items-center justify-center overflow-hidden border border-gray-400 bg-gray-100 sm:h-56 md:h-60">
       {blog.image_url ? (
         <img
@@ -82,11 +87,11 @@ const renderBlogItem = (blog) => (
       ) : null}
 
       {/* TODO: Navigate to the blog detail page */}
-      <button className="mt-4 w-fit border-none bg-transparent p-0 text-sm font-medium text-zinc-900 hover:text-primary">
+      <span className="mt-4 w-fit text-sm font-medium text-zinc-900 group-hover:text-primary">
         Read more
-      </button>
+      </span>
     </div>
-  </div>
+  </Link>
 );
 
 const Blogs = () => {
@@ -139,7 +144,7 @@ const Blogs = () => {
 
   // Display a loading state while fetching data
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading className="min-h-48" />;
   }
 
   // Display the error message when fetching fails
