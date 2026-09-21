@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router";
 
 import ProductsSlider from "../../../Common/Slider/ProductsSliderBox";
 import TabsSlider from "../../../Common/TabsSlider/TabsSlider";
@@ -9,8 +10,42 @@ import { supabase } from "../../../../lib/supabase";
 const normalizeProducts = (items = []) =>
   items.map((product) => ({
     ...product,
-    image: product.image_url,
+    name: product.name || product.title || "Product",
+    image_url: product.image_url || product.image || "",
   }));
+
+const renderProductItem = (product) => (
+  <Link
+    to={`/products/${encodeURIComponent(product.id)}`}
+    className="group mt-5 mx-8 flex h-full cursor-pointer flex-col overflow-hidden bg-white"
+  >
+    <div className="flex h-52 w-full items-center justify-center overflow-hidden border border-gray-400 p-5 sm:h-56 md:h-60">
+      {product.image_url ? (
+        <img
+          src={product.image_url}
+          alt={product.name}
+          className="h-64 w-full object-contain transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+        />
+      ) : (
+        <span className="text-sm uppercase tracking-[0.2em] text-gray-400">
+          Product
+        </span>
+      )}
+    </div>
+    <div className="flex flex-1 flex-col px-4 py-4 text-center sm:px-5">
+      <h3 className="line-clamp-2 min-h-12 text-sm font-roboto-Light leading-6 text-gray-500 transition-colors group-hover:text-primary sm:text-base">
+        {product.name}
+      </h3>
+      <p className="mt-2 text-sm font-semibold text-primary sm:text-base">
+        {product.price ?? "Price on request"}$
+      </p>
+      <span className="mx-auto mt-2 w-fit text-sm text-zinc-900 transition-colors group-hover:text-primary">
+        View details
+      </span>
+    </div>
+  </Link>
+);
 const productTabs = [
   { id: "best-selling", label: "Best Seller" },
   { id: "special", label: "Special" },
@@ -89,7 +124,11 @@ const NewProducts = () => {
         swiperRef={productSliderRef}
       />
 
-      <ProductsSlider swiperRef={productSliderRef} items={currentProducts} />
+      <ProductsSlider
+        swiperRef={productSliderRef}
+        items={currentProducts}
+        renderItem={renderProductItem}
+      />
     </div>
   );
 };

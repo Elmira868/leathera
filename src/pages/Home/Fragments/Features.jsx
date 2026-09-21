@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router";
 
 import ProductsSlider from "../../../components/Common/Slider/ProductsSliderBox";
 import TabTitle from "../../../components/Common/TabsSlider/TabTitle";
+import Loading from "../../../components/Common/Loading";
 
 import { supabase } from "../../../lib/supabase";
 
@@ -13,6 +15,44 @@ const normalizeFeatures = (items = []) =>
     image_url: feature.image_url || feature.image || feature.img,
     price: feature.price ?? feature.amount ?? "Price on request",
   }));
+
+const renderFeatureItem = (feature) => (
+  <Link
+    to={`/features/${encodeURIComponent(feature.id)}`}
+    className="group mx-8 mt-5 flex h-full cursor-pointer flex-col overflow-hidden bg-white"
+  >
+    <div className="flex h-52 w-full items-center justify-center overflow-hidden border border-gray-400 p-5 sm:h-56 md:h-60">
+      {feature.image_url ? (
+        <img
+          src={feature.image_url}
+          alt={feature.name}
+          className="h-64 w-full object-contain transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+          onError={(event) => {
+            event.currentTarget.style.display = "none";
+          }}
+        />
+      ) : (
+        <span className="text-sm uppercase tracking-[0.2em] text-gray-400">
+          Feature
+        </span>
+      )}
+    </div>
+
+    <div className="flex flex-1 flex-col px-4 py-4 text-center sm:px-5">
+      <h3 className="line-clamp-2 min-h-12 text-sm font-roboto-Light leading-6 text-gray-500 transition-colors group-hover:text-primary sm:text-base">
+        {feature.name}
+      </h3>
+      <p className="mt-2 text-sm font-semibold text-primary sm:text-base">
+        {feature.price}
+        {typeof feature.price === "number" ? "$" : ""}
+      </p>
+      <span className="mx-auto mt-2 w-fit text-sm text-zinc-900 transition-colors group-hover:text-primary">
+        View details
+      </span>
+    </div>
+  </Link>
+);
 
 const Features = () => {
   const productSliderRef = useRef(null);
@@ -47,7 +87,7 @@ const Features = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading className="min-h-48" />;
   }
 
   if (error) {
@@ -70,6 +110,7 @@ const Features = () => {
         <ProductsSlider
           swiperRef={productSliderRef}
           items={features}
+          renderItem={renderFeatureItem}
           slidesPerView={3}
           spaceBetween={24}
         />

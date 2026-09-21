@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 
-import Loading from "../components/Common/Loading";
-import Breadcrumb from "../components/Common/Breadcrumb";
-import { supabase, supabaseConfigError } from "../lib/supabase";
+import Loading from "../../components/Common/Loading";
+import Breadcrumb from "../../components/Common/Breadcrumb";
+import { supabase, supabaseConfigError } from "../../lib/supabase";
 
 const BlogDetailsPage = () => {
   const { blogId } = useParams();

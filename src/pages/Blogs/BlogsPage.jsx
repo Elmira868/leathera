@@ -1,17 +1,15 @@
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
-import Breadcrumb from "../components/Common/Breadcrumb";
-import Loading from "../components/Common/Loading";
-import { supabase, supabaseConfigError } from "../lib/supabase";
+import Breadcrumb from "../../components/Common/Breadcrumb";
+import Loading from "../../components/Common/Loading";
+import { supabase, supabaseConfigError } from "../../lib/supabase";
 
 const normalizeBlog = (blog, index) => ({
   ...blog,
   id: blog.id ?? `blog-${index}`,
   title: blog.title || blog.name || blog.blog_title || "Untitled blog",
-  image:
-    blog.image_url || blog.image || blog.cover || blog.thumbnail || "",
+  image: blog.image_url || blog.image || blog.cover || blog.thumbnail || "",
   description: blog.description || blog.excerpt || blog.summary || "",
   author: blog.author || "Leathera Team",
 });
