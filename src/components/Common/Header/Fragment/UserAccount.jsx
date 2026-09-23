@@ -17,7 +17,10 @@ const UserAccount = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative">
+    <div
+      ref={containerRef}
+      className={`relative ${isOpen ? "z-110" : "z-auto"}`}
+    >
       <div
         onClick={() => setIsOpen((prev) => !prev)}
         className="flex min-w-0 cursor-pointer items-center gap-x-2 py-3 sm:gap-x-3 sm:py-4"

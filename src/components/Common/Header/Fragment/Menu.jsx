@@ -130,7 +130,7 @@ const Menu = () => {
       {/* Mobile drawer */}
       {createPortal(
         <div
-          className={`fixed inset-0 z-[100] md:hidden ${
+          className={`fixed inset-0 z-100 md:hidden ${
           mobileOpen ? "pointer-events-auto" : "pointer-events-none"
           }`}
           aria-hidden={!mobileOpen}

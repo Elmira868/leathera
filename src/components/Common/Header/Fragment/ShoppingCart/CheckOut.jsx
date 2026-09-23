@@ -19,7 +19,7 @@ const CheckOut = ({ onClose }) => {
         absolute
         right-0
         top-full
-        z-[70]
+        z-70
         mt-2
 
         w-[calc(100vw-2rem)]
