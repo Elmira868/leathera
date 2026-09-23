@@ -16,7 +16,7 @@ const getProductImage = (item) => {
   );
 };
 
-const defaultRenderItem = (item) => {
+const defaultRenderItem = (item, onAddToCart) => {
   const imageUrl = getProductImage(item);
 
   return (
@@ -46,7 +46,13 @@ const defaultRenderItem = (item) => {
           {item?.price ?? "Price on request"}$
         </p>
        <RatingStars rating={item?.rating} />
-       <button className="border-none w-fit mx-auto mt-2 text-zinc-900 font-roboto-Regular hover:text-primary cursor-pointer">Add to cart</button>
+       <button
+         type="button"
+         onClick={() => onAddToCart?.(item)}
+         className="border-none w-fit mx-auto mt-2 text-zinc-900 font-roboto-Regular hover:text-primary cursor-pointer"
+       >
+         Add to cart
+       </button>
       </div>
     </div>
   );
@@ -61,6 +67,7 @@ const ProductsSlider = ({
   className = "mySwiper",
   slideClassName = "",
   onSwiper,
+  onAddToCart,
 }) => {
   const localSwiperRef = useRef(null);
 
@@ -118,7 +125,9 @@ const ProductsSlider = ({
           key={item.id ?? item.name ?? index}
           className={`h-auto ${slideClassName}`}
         >
-          {(renderItem || defaultRenderItem)(item, index)}
+          {renderItem
+            ? renderItem(item, index)
+            : defaultRenderItem(item, onAddToCart)}
         </SwiperSlide>
       ))}
     </Swiper>

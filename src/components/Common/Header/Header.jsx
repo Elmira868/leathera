@@ -1,6 +1,6 @@
 import Menu from "./Fragment/Menu";
 import SearchBox from "./Fragment/SearchBox";
-import ShoppingCart from "./Fragment/ShoppingCart";
+import ShoppingCart from "./Fragment/ShoppingCart/ShoppingCart";
 import Topbar from "./Fragment/Topbar";
 import UserAccount from "./Fragment/UserAccount";
 

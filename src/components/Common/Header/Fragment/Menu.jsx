@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
+import { createPortal } from "react-dom";
 import { MenuItem } from "../../../../lib/constants";
 
 const Menu = () => {
@@ -127,52 +128,53 @@ const Menu = () => {
       </div>
 
       {/* Mobile drawer */}
-      <div
-        className={`fixed inset-0 z-50 md:hidden ${
+      {createPortal(
+        <div
+          className={`fixed inset-0 z-[100] md:hidden ${
           mobileOpen ? "pointer-events-auto" : "pointer-events-none"
-        }`}
-        aria-hidden={!mobileOpen}
-      >
-        {/* Backdrop */}
-        <div
-          onClick={closeMobile}
-          className={`absolute inset-0 bg-gray-950/40 transition-opacity duration-300 ${
-            mobileOpen ? "opacity-100" : "opacity-0"
           }`}
-        />
+          aria-hidden={!mobileOpen}
+        >
+          {/* Backdrop */}
+          <div
+            onClick={closeMobile}
+            className={`absolute inset-0 bg-gray-950/40 transition-opacity duration-300 ${
+              mobileOpen ? "opacity-100" : "opacity-0"
+            }`}
+          />
 
-        {/* Panel */}
-        <div
-          ref={panelRef}
-          className={`absolute right-0 top-0 flex h-full w-[85%] max-w-sm
+          {/* Panel */}
+          <div
+            ref={panelRef}
+            className={`absolute right-0 top-0 flex h-full w-[85%] max-w-sm
             flex-col bg-white shadow-2xl transition-transform duration-300
             ease-out ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}
-        >
-          <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
-            <span className="text-sm font-semibold text-gray-900">Menu</span>
-            <button
-              type="button"
-              onClick={closeMobile}
-              aria-label="Close menu"
-              className="flex h-9 w-9 items-center justify-center rounded-lg
+          >
+            <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
+              <span className="text-sm font-semibold text-gray-900">Menu</span>
+              <button
+                type="button"
+                onClick={closeMobile}
+                aria-label="Close menu"
+                className="flex h-9 w-9 items-center justify-center rounded-lg
                 text-gray-600 transition-colors hover:bg-gray-100"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.75"
-                strokeLinecap="round"
-                className="h-5 w-5"
               >
-                <line x1="5" y1="5" x2="19" y2="19" />
-                <line x1="19" y1="5" x2="5" y2="19" />
-              </svg>
-            </button>
-          </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  className="h-5 w-5"
+                >
+                  <line x1="5" y1="5" x2="19" y2="19" />
+                  <line x1="19" y1="5" x2="5" y2="19" />
+                </svg>
+              </button>
+            </div>
 
-          <ul className="flex-1 overflow-y-auto px-2 py-2">
+            <ul className="flex-1 overflow-y-auto px-2 py-2">
             {MenuItem.map((item) => {
               const key = item.key || item.title;
               const isOpen = openAccordion === key;
@@ -250,9 +252,11 @@ const Menu = () => {
                 </li>
               );
             })}
-          </ul>
-        </div>
-      </div>
+            </ul>
+          </div>
+        </div>,
+        document.body,
+      )}
     </nav>
   );
 };

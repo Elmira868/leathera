@@ -4,10 +4,12 @@ import { FiShoppingCart } from "react-icons/fi";
 
 import Breadcrumb from "../components/Common/Breadcrumb";
 import Loading from "../components/Common/Loading";
+import { useCart } from "../context/CartContext";
 import { supabase, supabaseConfigError } from "../lib/supabase";
 
 const ProductDetailsPage = () => {
   const { productId } = useParams();
+  const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -72,15 +74,15 @@ const ProductDetailsPage = () => {
       <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <article className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
           <div className="grid lg:grid-cols-2">
-            <div className="flex min-h-[280px] items-center justify-center bg-gray-50 p-5 sm:min-h-[400px] sm:p-8 lg:min-h-[520px]">
+            <div className="flex min-h-70 items-center justify-center bg-gray-50 p-5 sm:min-h-100 sm:p-8 lg:min-h-130">
               {image ? (
                 <img
                   src={image}
                   alt={title}
-                  className="h-full max-h-[500px] w-full rounded-xl object-contain"
+                  className="h-full max-h-125 w-full rounded-xl object-contain"
                 />
               ) : (
-                <div className="flex min-h-[240px] w-full items-center justify-center rounded-xl bg-gray-100">
+                <div className="flex min-h-60 w-full items-center justify-center rounded-xl bg-gray-100">
                   <span className="text-xs font-medium uppercase tracking-[0.2em] text-gray-400">
                     No image
                   </span>
@@ -115,6 +117,7 @@ const ProductDetailsPage = () => {
 
               <button
                 type="button"
+                onClick={() => addToCart(product)}
                 className="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:w-fit sm:min-w-52"
               >
                 <FiShoppingCart className="text-lg" />
