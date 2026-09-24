@@ -6,6 +6,7 @@ import LoginPage from "../pages/Login/LoginPage.jsx";
 import RegisterPage from "../pages/RegisterPage.jsx";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage.jsx";
 import ContactPage from "../pages/ContactPage.jsx";
+import AboutPage from "../pages/AboutPage.jsx";
 import BlogDetailsPage from "../pages/Blogs/BlogDetailsPage.jsx";
 import FeaturesDetails from "../pages/FeaturesDetails.jsx";
 import ProductDetailsPage from "../pages/ProductDetailsPage.jsx";
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
       { path: "/register", element: <RegisterPage /> },
       { path: "/forget-password", element: <ForgotPasswordPage /> },
       { path: "/contact-us", element: <ContactPage /> },
+      { path: "/about-us", element: <AboutPage /> },
     ],
   },
 ]);
