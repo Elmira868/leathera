@@ -10,6 +10,7 @@ import BlogDetailsPage from "../pages/Blogs/BlogDetailsPage.jsx";
 import FeaturesDetails from "../pages/FeaturesDetails.jsx";
 import ProductDetailsPage from "../pages/ProductDetailsPage.jsx";
 import CategoryPage from "../pages/Home/Category/CategoryPage.jsx";
+import SearchPage from "../pages/SearchPage.jsx";
 
 const categoryPaths = [
   "/fashion",
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
       { path: "/blogs/:blogId", element: <BlogDetailsPage /> },
       { path: "/features/:featuresId", element: <FeaturesDetails /> },
       { path: "/products/:productId", element: <ProductDetailsPage /> },
+      { path: "/search", element: <SearchPage /> },
       { path: "/login", element: <LoginPage /> },
       { path: "/register", element: <RegisterPage /> },
       { path: "/forget-password", element: <ForgotPasswordPage /> },
