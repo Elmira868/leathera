@@ -1,15 +1,30 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Leathera
 
-Currently, two official plugins are available:
+Leather Goods Store
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Product Search
+- Product Filters
+- Add product to cart
+- Remove product from shopping cart
+- Calculating the final price of the shopping cart
+
+## Screenshots
+
+<img
+  src="https://github.com/user-attachments/assets/86575e64-f8d0-44c5-96cd-de52ffd4c6c1"
+  alt="Main Page"
+  width="380"
+/>
+
+
+
+
+## 🛠 Skills
+React , Tailwind , Supabasedocumentation](https://react.dev/learn/react-compiler/installation).
 
 ## Expanding the ESLint configuration
 
